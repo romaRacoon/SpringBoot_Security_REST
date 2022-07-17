@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<table th:border="10" th:width="500" th:height="300" th:align="center">
+  <tr>
+    <td th:text="ID">
+      Id
+    </td>
+    <td th:text="Username">
+      Id
+    </td>
+    <td th:text="Password">
+      Id
+    </td>
+  </tr>
+</table>
+<div th:each="user: ${users}">
+  <table th:border="10" th:width="500" th:height="300" th:align="center">
+    <tr>
+      <td th:text="${user.getId()}">
+        Id
+      </td>
+      <td th:text="${user.getUsername()}">
+        UserName
+      </td>
+      <td th:text="${user.getPassword()}">
+        Password
+      </td>
+      <td>
+        <form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
+          <input type="submit" value="delete">
+        </form>
+      </td>
+      <td>
+        <a th:href="@{/admin/edit/{id}(id=${user.getId()})}"> EDIT</a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div th:align="center">
+  <a th:href="@{/admin/create}">Create new user</a>
+  <br/>
+  <a th:href="@{/logout}">Exit</a>
+</div>
+</body>
+</html>

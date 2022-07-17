@@ -5,7 +5,28 @@
 </head>
 <body>
 <h1>User, welcome spring boot security page!</h1>
-
-
+<table th:border="10" th:width="500" th:height="300" th:align="center">
+    <tr>
+        <td th:text="Username">
+            Username
+        </td>
+        <td th:text="Password">
+            Password
+        </td>
+    </tr>
+</table>
+<table th:border="10" th:width="500" th:height="300" th:align="center">
+    <tr>
+        <td th:text="${principalUser.getUsername()}">
+            UserName
+        </td>
+        <td th:text="${principalUser.getPassword()}">
+            Password
+        </td>
+    </tr>
+</table>
+<div th:align="center">
+    <a th:href="@{/logout}">Exit</a>
+</div>
 </body>
 </html>

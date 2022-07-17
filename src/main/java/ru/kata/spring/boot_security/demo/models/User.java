@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles = new ArrayList<>();
+    private List<Role> roles;
 
     public void addRole(Role role) {
         roles.add(role);
@@ -58,8 +57,13 @@ public class User implements UserDetails {
         return true;
     }
 
-    public static UserDetails getUserDetails(User user) {
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), user.getAuthorities());
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 }
