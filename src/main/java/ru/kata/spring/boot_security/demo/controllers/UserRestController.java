@@ -48,7 +48,6 @@ public class UserRestController {
     @PostMapping("/admin/newUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         userService.save(user);
-        System.out.println(user.getAuthorities());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -59,13 +58,7 @@ public class UserRestController {
 
     @PutMapping("/admin/edit")
     public ResponseEntity<User> editUserBy(@RequestBody User user) {
-        System.out.println(user);
         userService.edit(user.getId(), user);
         return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @PutMapping("/admin/test")
-    public ResponseEntity<User> test() {
-        return new ResponseEntity<>(new User(),HttpStatus.OK);
     }
 }

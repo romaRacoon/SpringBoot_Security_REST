@@ -40,10 +40,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void edit(Integer id, User user) {
-        System.out.println("edit");
         userRepository.save(user);
-        //userRepository.update(id, user.getPassword(), user.getUsername(), user.getAge(), user.getName(),
-        //        user.getLastName());
     }
 
     public String getAllUserRoles(Principal principal) {
